@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Qwitcher+Grypen:wght@400;700&display=swap');
+
+.container {
+  /* background: linear-gradient(300deg, #00bfff, #542cb3, #ef8172); */
+  height: 70px;
+  box-shadow: 10px 25px 30px rgba(0,0,0,0.1);
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+  width: min-content;
+  cursor: pointer;
+}
+
+.logo {
+  height: 50px;
+}
+
+.container h2 {
+  color: whitesmoke;
+  letter-spacing: 3px;
+}

@@ -8,9 +8,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
+  background: linear-gradient(300deg, #00bfff, #542cb3, #ef8172);
+  color: whitesmoke;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input {
+  border-radius: 100vh;
+  border: none;
+  padding: 10px;
+  width: 300px;
 }
