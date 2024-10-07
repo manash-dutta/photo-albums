@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
-import Spinner from "react-spinner-material";
-import db from "../firebase.config";
+import db from "../config/firebase.config";
 import styles from "./Styles.module.css";
 import AlbumForm from "./AlbumForm";
 import ImagesList from "./ImagesList";
 import cover from "../assets/gallery.png";
+import spinner from "../assets/loading_spinner.svg";
 
 export default function AlbumList() {
   const [showForm, setShowForm] = useState(false);
   const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
 
   const toggleForm = () => {
@@ -17,16 +18,18 @@ export default function AlbumList() {
   };
 
   useEffect(() => {
+    setLoading(true);
     const albumRef = collection(db, "albums");
-    const unsub = onSnapshot(albumRef, (snapshot) => {
+    const unsubscribe = onSnapshot(albumRef, (snapshot) => {
       const albums = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setAlbums(albums);
+      setLoading(false);
     });
     // Cleanup listener when the component unmounts
-    return () => unsub();
+    return () => unsubscribe();
   }, []);
 
   // Function to go back to the album list from the ImagesList component
@@ -36,7 +39,11 @@ export default function AlbumList() {
 
   return (
     <main>
-      {selectedAlbum ? (
+      {loading ? (
+        <div className={styles.loading}>
+          <img src={spinner} alt="Loading" />
+        </div>
+      ) : selectedAlbum ? (
         <ImagesList album={selectedAlbum} onBack={handleBack} />
       ) : (
         <>
@@ -65,12 +72,9 @@ export default function AlbumList() {
                   </div>
                 ))
               ) : (
-                <Spinner
-                  radius={120}
-                  color={"#333"}
-                  stroke={2}
-                  visible={true}
-                />
+                <div className={styles.noContent}>
+                  <h3>No Images in this Album</h3>
+                </div>
               )}
             </div>
           </div>

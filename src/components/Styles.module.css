@@ -50,30 +50,64 @@ button:active {
 
 .gridItem {
   height: 200px;
+  width: 300px;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 10px 25px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 25px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
+
+.gridItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: none;
+  flex-direction: row;
+  gap: 10px;
+  z-index: 100;
+}
+
+.gridItem:hover .iconContainer {
+  display: flex;
+}
+
+.icon {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
 
 .caption {
   font-weight: 700;
+  font-size: 1.2rem;
   position: absolute;
   bottom: 0;
   width: 100%;
   padding-block: 10px;
   text-align: center;
   text-transform: uppercase;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .caption:hover {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 img {
@@ -85,4 +119,109 @@ img {
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.loading img {
+  position: inherit;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-gap: 20px;
+}
+
+.gridItem {
+  height: 200px;
+  width: 300px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 10px 25px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Ensures rounded corners and prevents overflow */
+}
+
+.gridItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the entire area */
+  border-radius: inherit; /* Applies the same border radius as .gridItem */
+}
+
+.carouselModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.carouselContainer {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  justify-content: center;
+}
+
+.imageContainer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carouselImage {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+.closeButton,
+.prevButton,
+.nextButton {
+  background: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.prevButton {
+  position: absolute;
+  left: 20px;
+}
+
+.nextButton {
+  position: absolute;
+  right: 30px;
 }
