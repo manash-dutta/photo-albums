@@ -19,13 +19,12 @@ export default function AlbumList() {
 
   useEffect(() => {
     setLoading(true);
-    const albumRef = collection(db, "albums"); // I am getting the albumRef here
+    const albumRef = collection(db, "albums");
     const unsubscribe = onSnapshot(albumRef, (snapshot) => {
       const albums = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(albums); // I am getting the permission error here
       setAlbums(albums);
       setLoading(false);
     });
